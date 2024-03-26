@@ -155,13 +155,10 @@ export async function hAIku(haikiput: Haikipu, systemPrompt: string, assistantPr
     console.log(haikiput);
     const { usedEmbeddingIds, messages, haikipu } = await generateHackathonProposal(
         haikiput,
-        "hello",
-        "testing",
-        "hi",
+        systemPrompt,
+        assistantPrompt,
+        userPrompt,
     );
-
-
-
     // Proceed with storing the enhanced proposal in MongoDB or returning it in the response
     //
     const db = client.db("nerdWorkState"); // Connect to the database
@@ -179,8 +176,6 @@ export async function hAIku(haikiput: Haikipu, systemPrompt: string, assistantPr
         { $setOnInsert: { haikipu: haikipu } },
         { upsert: true }, // this creates new document if none match the filter
     );
-
-    // Implementation depends on application requirements.
     //
     return haikipu;
 
@@ -188,9 +183,10 @@ export async function hAIku(haikiput: Haikipu, systemPrompt: string, assistantPr
 
 export const someVar = async (c: any, next: any) => {
     const test = {} as Haikipu
-    const result = await hAIku(test, "", "", "")
+
+    console.log(c.body)
+    const result = await hAIku(test, c.buttonValue, "", "")
 
     c._var.text = result.haiku
-    console.log(c)
     await next()
 }
