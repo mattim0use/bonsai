@@ -3,22 +3,26 @@ import { Button, Frog, TextInput } from 'frog'
 import { handle } from 'frog/next'
 import { devtools } from 'frog/dev'
 import { serveStatic } from 'frog/serve-static'
-
+import { someVar } from "../middleware/openAi/royCall"
 const app = new Frog({
     basePath: '/api',
-    browserLocation: '/:path',
 })
 
-app.frame('/', (c) => {
-    const { buttonValue, status } = c
+
+
+
+app.frame('/', someVar, async (c) => {
+    const { buttonValue, status } = c;
+
     return c.res({
         image: (
             <div style={{ color: 'white', display: 'flex', fontSize: 60 }}>
                 {status === 'initial' ? (
-                    'Select your fruit!'
+                    'Select your fruit or enter a haiku!'
                 ) : (
                     `Selected: ${buttonValue}`
                 )}
+                <span>{c.var.text}</span>
             </div>
         ),
         intents: [
@@ -26,10 +30,10 @@ app.frame('/', (c) => {
             <Button value="banana">Banana</Button>,
             <Button value="mango">Mango</Button>
         ]
-    })
-})
+    });
+});
 
-devtools(app, { serveStatic })
+devtools(app, { serveStatic });
 
-export const GET = handle(app)
-export const POST = handle(app)
+export const GET = handle(app);
+export const POST = handle(app);
