@@ -1,5 +1,5 @@
 import { useContractWrite } from 'wagmi';
-import externalContracts from '../contracts/externalContracts';
+import externalContracts from '../../contracts/externalContracts';
 
 function FarmClaim() {
   const { writeAsync } = useContractWrite({

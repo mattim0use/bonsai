@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useContractRead } from 'wagmi';
-import externalContracts from '../contracts/externalContracts';
+import externalContracts from '../../contracts/externalContracts';
 import { useAccount } from "wagmi";
 
 function FarmBalance() {

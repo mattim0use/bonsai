@@ -1,13 +1,15 @@
 import { useState } from 'react';
 import { useContractWrite } from 'wagmi';
-import externalContracts from '../contracts/externalContracts';
+import externalContracts from '../../contracts/externalContracts';
 
-function FarmStake() {
+
+//needs a input field to set the amount then will work 
+function Erc20FarmStake() {
   const [amount, setAmount] = useState("");
 
   const { writeAsync } = useContractWrite({
-    address: externalContracts[137].xStakingPool.address,
-    abi: externalContracts[137].xStakingPool.abi,
+    address: externalContracts[137].erc20StakingPool.address,
+    abi: externalContracts[137].erc20StakingPool.abi,
     functionName: 'stake',
     args: [BigInt(amount)],
   });
@@ -19,8 +21,9 @@ function FarmStake() {
   };
 
   return (
+    
     <button onClick={handleStake}>Stake</button>
   );
 }
 
-export default FarmStake;
+export default Erc20FarmStake;

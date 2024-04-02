@@ -1,15 +1,15 @@
 import { useState } from 'react';
 import { useContractWrite } from 'wagmi';
 import {ethers} from 'ethers';
-import externalContracts from '../contracts/externalContracts';
+import externalContracts from '../../contracts/externalContracts';
 
-function FarmApprove() {
-  const spender = externalContracts[137].xStakingPool.address
+function Erc20FarmApprove() {
+  const spender = externalContracts[137].erc20StakingPool.address
   const amount = ethers.MaxUint256.toString();;
 
   const { writeAsync } = useContractWrite({
-    address: externalContracts[137].bonsaiTokenABI.address,
-    abi: externalContracts[137].bonsaiTokenABI.abi,
+    address: externalContracts[137].bonsaiTokenABI.address, //change this for the lp token addy later
+    abi: externalContracts[137].bonsaiTokenABI.abi, //same as above
     functionName: 'approve',
     args: [spender, BigInt(amount)],
   });
@@ -25,4 +25,4 @@ function FarmApprove() {
   );
 }
 
-export default FarmApprove;
+export default Erc20FarmApprove;
