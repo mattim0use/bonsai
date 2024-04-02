@@ -5,6 +5,10 @@ import type { NextPage } from "next";
 import { useAccount } from "wagmi";
 import { BugAntIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { Address } from "~~/components/scaffold-eth";
+import FarmApprove  from "./farmApprove";
+import FarmBalance from "./farmBalance";
+import FarmClaim from "./farmClaim";
+import FarmStake from "./farmStake";
 
 const Home: NextPage = () => {
   const { address: connectedAddress } = useAccount();
@@ -17,6 +21,12 @@ const Home: NextPage = () => {
             <span className="block text-2xl mb-2">Welcome to</span>
             <span className="block text-4xl font-bold">Scaffold-ETH 2</span>
           </h1>
+          <div>
+            <FarmApprove />
+            <FarmBalance />
+            <FarmClaim />
+            <FarmStake />
+          </div>
           <div className="flex justify-center items-center space-x-2">
             <p className="my-2 font-medium">Connected Address:</p>
             <Address address={connectedAddress} />
