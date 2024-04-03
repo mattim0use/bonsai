@@ -3,7 +3,7 @@ import { useContractRead } from 'wagmi';
 import externalContracts from '../../contracts/externalContracts';
 import { useAccount } from "wagmi";
 
-function FarmBalance() {
+function Erc20FarmBalance() {
   const [balance, setBalance] = useState(0);
   const { address: connectedAddress } = useAccount();
 
@@ -25,4 +25,4 @@ function FarmBalance() {
   );
 }
 
-export default FarmBalance;
+export default Erc20FarmBalance;
